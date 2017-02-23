@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://www.duaicxx.com"/>
+    <link rel="canonical" href="http://www.duaicxx.com/2017/02/23/Mysql之触发器的学习与理解/"/>
 
     
     <link rel="author" href="https://plus.google.com/114544845107970781441"/>
@@ -137,29 +137,40 @@
 
     <div class="content-wrapper">
         <div class="content-wrapper__inner">
-            <div class="main-post-list">
-    
-  <ol class="post-list">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-02-23T03:17:14.300Z" class="post-list__meta--date date">2017-02-23</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title"></h1>
+  </header>
+
+  <section class="post">
+    <h1 id="Mysql触发器"><a href="#Mysql触发器" class="headerlink" title="Mysql触发器"></a>Mysql触发器</h1><p>先上代码：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> control_log_trigger;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> control_log_trigger <span class="keyword">AFTER</span> <span class="keyword">INSERT</span> <span class="keyword">ON</span> control_log.termail</div><div class="line">  <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">BEGIN</span></div><div class="line">    <span class="keyword">INSERT</span> <span class="keyword">INTO</span> temp_control_log.termail <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> control_log.termail <span class="keyword">where</span> <span class="keyword">id</span> = NEW.id;</div><div class="line">  <span class="keyword">END</span>;</div></pre></td></tr></table></figure></p>
+<p>解释：</p>
+<hr>
+<pre><code>1、DROP TRIGGER control_log_trigger;第一行是删除同名触发器
+2、CREATE TRIGGER control_log_trigger;创建触发器
+3、AFTER INSERT ON control_log.termail;设置触发器,触发时间:1、AFTER 在commit之后2、befoer在commit之前,指定触发操作为INSERT、UPDATE、DELETE，最后部分指定表。
+4、FOR EACH ROW BEGIN;固定代码。
+5、需要进行的操作,操作结束后必须使用分好结尾&apos;;&apos;。
+6、END,结尾。
+</code></pre><hr>
+<p>个人理解：触发相当于后端的拦截器。</p>
+
+  </section>
+
+</article>
+<section class="read-more">
+     
+   
   
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2017/02/23/Mysql之触发器的学习与理解/" title="link to post.title"></a></h2>
-      <p class="excerpt">
-    
-      Mysql触发器先上代码：12345DROP TRIGGER control_log_trigger;CREATE TRIGGER control_log_trigger AFTER INSERT ON control_log.termail  FOR EACH ROW BEGIN    INSERT INTO temp_control_log.termail SELECT * FROM cont
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2017-02-23T03:17:14.300Z" class="post-list__meta--date date">2017-02-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2017/02/23/Mysql之触发器的学习与理解/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
-
-
-
-</div>
-
+</section>
 
             
             <footer class="footer">
