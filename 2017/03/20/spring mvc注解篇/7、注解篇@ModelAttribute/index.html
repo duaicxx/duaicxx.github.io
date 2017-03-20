@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>7、注解篇@ModelAttribute | Duai</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="将易意淫的态度，放到目标上">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="7、注解篇@ModelAttribute | Duai">
+    <meta name="twitter:description" content="将易意淫的态度，放到目标上">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="7、注解篇@ModelAttribute | Duai">
+    <meta property="og:description" content="将易意淫的态度，放到目标上">
+
+    
+    <meta name="author" content="獨文公">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/wallhaven-58973.jpg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://www.duaicxx.com/2017/03/20/spring mvc注解篇/7、注解篇@ModelAttribute/"/>
+
+    
+    <link rel="author" href="https://plus.google.com/114544845107970781441"/>
+    
+      
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/kali-linux-wallpaper_654878112.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Duai 的主页"><img src="/images/headimg_dl.jpg" width="80" alt="Duai logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Duai">Duai</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">JAVA  C#  数据库  前端  集群 分布式</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">将易意淫的态度，放到目标上</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.com/233804566" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/duaicxx" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+  <li class="navigation__item">
+    <a href="https://plus.google.com/114544845107970781441" title="Google+" target="_blank">
+      <i class='social fa fa-google-plus-square'></i>
+      <span class="label">Google+</span>
+    </a>
+  </li>
+
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay null"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-ModelAttribute/">spring,spring mvc,注解,ModelAttribute</a>
+ </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">7、注解篇@ModelAttribute</h1>
+  </header>
+
+  <section class="post">
+    <h1 id="ModelAttribute-绑定值"><a href="#ModelAttribute-绑定值" class="headerlink" title="@ModelAttribute 绑定值"></a>@ModelAttribute 绑定值</h1><p><strong>会在controller执行之前先执行的方式可以使用@RequestParam注解获取传入的值，当定义该注解后该类的所以请求都会先执行</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">	 * 1. 有 @ModelAttribute 标记的方法, 会在每个目标方法执行之前被 SpringMVC 调用! </div><div class="line">	 * 2. @ModelAttribute 注解也可以来修饰目标方法 POJO 类型的入参, 其 value 属性值有如下的作用:</div><div class="line">	 * 1). SpringMVC 会使用 value 属性值在 implicitModel 中查找对应的对象, 若存在则会直接传入到目标方法的入参中.</div><div class="line">	 * 2). SpringMVC 会一 value 为 key, POJO 类型的对象为 value, 存入到 request 中. </div><div class="line">	 */</div><div class="line">	@ModelAttribute</div><div class="line">	public void getUser(@RequestParam(value=&quot;id&quot;,required=false) Integer id, </div><div class="line">			Map&lt;String, Object&gt; map)&#123;</div><div class="line">		System.out.println(&quot;modelAttribute method&quot;);</div><div class="line">		if(id != null)&#123;</div><div class="line">			//模拟从数据库中获取对象</div><div class="line">			User user = new User(1, &quot;Tom&quot;, &quot;123456&quot;, &quot;tom@atguigu.com&quot;, 12);</div><div class="line">			System.out.println(&quot;从数据库中获取一个对象: &quot; + user);</div><div class="line">			</div><div class="line">			map.put(&quot;user&quot;, user);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	/**</div><div class="line">	 * 运行流程:</div><div class="line">	 * 1. 执行 @ModelAttribute 注解修饰的方法: 从数据库中取出对象, 把对象放入到了 Map 中. 键为: user</div><div class="line">	 * 2. SpringMVC 从 Map 中取出 User 对象, 并把表单的请求参数赋给该 User 对象的对应属性.</div><div class="line">	 * 3. SpringMVC 把上述对象传入目标方法的参数. </div><div class="line">	 * </div><div class="line">	 * 注意: 在 @ModelAttribute 修饰的方法中, 放入到 Map 时的键需要和目标方法入参类型的第一个字母小写的字符串一致!</div><div class="line">	 * </div><div class="line">	 * SpringMVC 确定目标方法 POJO 类型入参的过程</div><div class="line">	 * 1. 确定一个 key:</div><div class="line">	 * 1). 若目标方法的 POJO 类型的参数木有使用 @ModelAttribute 作为修饰, 则 key 为 POJO 类名第一个字母的小写</div><div class="line">	 * 2). 若使用了  @ModelAttribute 来修饰, 则 key 为 @ModelAttribute 注解的 value 属性值. </div><div class="line">	 * 2. 在 implicitModel 中查找 key 对应的对象, 若存在, 则作为入参传入</div><div class="line">	 * 1). 若在 @ModelAttribute 标记的方法中在 Map 中保存过, 且 key 和 1 确定的 key 一致, 则会获取到. </div><div class="line">	 * 3. 若 implicitModel 中不存在 key 对应的对象, 则检查当前的 Handler 是否使用 @SessionAttributes 注解修饰, </div><div class="line">	 * 若使用了该注解, 且 @SessionAttributes 注解的 value 属性值中包含了 key, 则会从 HttpSession 中来获取 key 所</div><div class="line">	 * 对应的 value 值, 若存在则直接传入到目标方法的入参中. 若不存在则将抛出异常. </div><div class="line">	 * 4. 若 Handler 没有标识 @SessionAttributes 注解或 @SessionAttributes 注解的 value 值中不包含 key, 则</div><div class="line">	 * 会通过反射来创建 POJO 类型的参数, 传入为目标方法的参数</div><div class="line">	 * 5. SpringMVC 会把 key 和 POJO 类型的对象保存到 implicitModel 中, 进而会保存到 request 中. </div><div class="line">	 * </div><div class="line">	 * 源代码分析的流程</div><div class="line">	 * 1. 调用 @ModelAttribute 注解修饰的方法. 实际上把 @ModelAttribute 方法中 Map 中的数据放在了 implicitModel 中.</div><div class="line">	 * 2. 解析请求处理器的目标参数, 实际上该目标参数来自于 WebDataBinder 对象的 target 属性</div><div class="line">	 * 1). 创建 WebDataBinder 对象:</div><div class="line">	 * ①. 确定 objectName 属性: 若传入的 attrName 属性值为 &quot;&quot;, 则 objectName 为类名第一个字母小写. </div><div class="line">	 * *注意: attrName. 若目标方法的 POJO 属性使用了 @ModelAttribute 来修饰, 则 attrName 值即为 @ModelAttribute </div><div class="line">	 * 的 value 属性值 </div><div class="line">	 * </div><div class="line">	 * ②. 确定 target 属性:</div><div class="line">	 * 	&gt; 在 implicitModel 中查找 attrName 对应的属性值. 若存在, ok</div><div class="line">	 * 	&gt; *若不存在: 则验证当前 Handler 是否使用了 @SessionAttributes 进行修饰, 若使用了, 则尝试从 Session 中</div><div class="line">	 * 获取 attrName 所对应的属性值. 若 session 中没有对应的属性值, 则抛出了异常. </div><div class="line">	 * 	&gt; 若 Handler 没有使用 @SessionAttributes 进行修饰, 或 @SessionAttributes 中没有使用 value 值指定的 key</div><div class="line">	 * 和 attrName 相匹配, 则通过反射创建了 POJO 对象</div><div class="line">	 * </div><div class="line">	 * 2). SpringMVC 把表单的请求参数赋给了 WebDataBinder 的 target 对应的属性. </div><div class="line">	 * 3). *SpringMVC 会把 WebDataBinder 的 attrName 和 target 给到 implicitModel. </div><div class="line">	 * 近而传到 request 域对象中. </div><div class="line">	 * 4). 把 WebDataBinder 的 target 作为参数传递给目标方法的入参. </div><div class="line">	 */</div><div class="line">	@RequestMapping(&quot;/testModelAttribute&quot;)</div><div class="line">	public String testModelAttribute(User user)&#123;</div><div class="line">		System.out.println(&quot;修改: &quot; + user);</div><div class="line">		return SUCCESS;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+
+  </section>
+
+</article>
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/8、注解篇@DateTimeFormat/" title="8、注解篇@DateTimeFormat">8、注解篇@DateTimeFormat</a></h2>
+                <p class="excerpt">
+                
+                @DateTimeFormat 注解可对java.util.Date、java.util.Calendar、java.long.Long 时间类型进行标注：– pattern 属性：类型为字符串。指定解析/格式化字段数据的模式，如：”yyyy-MM-dd hh:mm:ss”
+– iso 属性：类型为
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-DateTimeFormat/">spring,spring mvc,注解,DateTimeFormat</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/8、注解篇@DateTimeFormat/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/02/23/Mysql之触发器的学习与理解/" title="Mysql之触发器的学习与理解">Mysql之触发器的学习与理解</a></h2>
+                <p class="excerpt">
+                
+                Mysql触发器先上代码：12345DROP TRIGGER control_log_trigger;CREATE TRIGGER control_log_trigger AFTER INSERT ON control_log.termail  FOR EACH ROW BEGIN    INSER
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-02-23T03:31:38.000Z" class="post-list__meta--date date">2017-02-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/Mysql-触发器/">Mysql,触发器</a>
+</span><a class="btn-border-small" href="/2017/02/23/Mysql之触发器的学习与理解/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+            
+            <footer class="footer">
+    <span class="footer__copyright">
+        Duai 博客
+    </span>
+</footer>
+        </div>
+    </div>
+
+    
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-92321957-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?efc0a1d7fb38d50c9c03ed4108286414";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    
+    </script>
+    
+</body>
+</html>

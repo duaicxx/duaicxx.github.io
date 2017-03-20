@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>1、注解篇@RequestMapping | Duai</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="将易意淫的态度，放到目标上">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="1、注解篇@RequestMapping | Duai">
+    <meta name="twitter:description" content="将易意淫的态度，放到目标上">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="1、注解篇@RequestMapping | Duai">
+    <meta property="og:description" content="将易意淫的态度，放到目标上">
+
+    
+    <meta name="author" content="獨文公">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/wallhaven-58973.jpg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://www.duaicxx.com/2017/03/20/spring mvc注解篇/1、注解篇@RequestMapping/"/>
+
+    
+    <link rel="author" href="https://plus.google.com/114544845107970781441"/>
+    
+      
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/kali-linux-wallpaper_654878112.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Duai 的主页"><img src="/images/headimg_dl.jpg" width="80" alt="Duai logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Duai">Duai</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">JAVA  C#  数据库  前端  集群 分布式</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">将易意淫的态度，放到目标上</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.com/233804566" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/duaicxx" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+  <li class="navigation__item">
+    <a href="https://plus.google.com/114544845107970781441" title="Google+" target="_blank">
+      <i class='social fa fa-google-plus-square'></i>
+      <span class="label">Google+</span>
+    </a>
+  </li>
+
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay null"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-RequestMapping/">spring,spring mvc,注解,RequestMapping</a>
+ </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">1、注解篇@RequestMapping</h1>
+  </header>
+
+  <section class="post">
+    <h1 id="1、-RequestMapping-请求url注解该注解有四个参数"><a href="#1、-RequestMapping-请求url注解该注解有四个参数" class="headerlink" title="1、@RequestMapping 请求url注解该注解有四个参数"></a>1、@RequestMapping 请求url注解该注解有四个参数</h1><h2 id="1）、value"><a href="#1）、value" class="headerlink" title="1）、value"></a>1）、value</h2><p><strong>对应的url值，当类与方法都存在该注解是 将是拼接结果类在前方法在后。</strong></p>
+<h2 id="2）、method"><a href="#2）、method" class="headerlink" title="2）、method"></a>2）、method</h2><p><strong>请求方法存在PUT、DELETE、POST、GET等常见的rest风格方式。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 常用: 使用 method 属性来指定请求方式</div><div class="line"> */</div><div class="line">@RequestMapping(value = &quot;/testMethod&quot;, method = RequestMethod.POST)</div><div class="line">public String testMethod() &#123;</div><div class="line">	System.out.println(&quot;testMethod&quot;);</div><div class="line">	return SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="3）、params使用其约定url规则："><a href="#3）、params使用其约定url规则：" class="headerlink" title="3）、params使用其约定url规则："></a>3）、params使用其约定url规则：</h2><p><strong>①、param 代表必须存在param这个参数</strong></p>
+<p><strong>②、!param 不能包含这个参数</strong></p>
+<p><strong>③、 param!=value param的值不能等于value</strong></p>
+<p><strong>④、param=value param的值必须等于value</strong></p>
+<p><strong>params是复数所以以数组方式传递规则：{“param=value”,”param != 1”,”param”,”!param”}</strong></p>
+<h2 id="4）、headers-请求头约束"><a href="#4）、headers-请求头约束" class="headerlink" title="4）、headers 请求头约束"></a>4）、headers 请求头约束</h2><p><strong>可以使用 params 和 headers 来更加精确的映射请求. params 和 headers 支持简单的表达式.使用方式与params相同</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 了解: 可以使用 params 和 headers 来更加精确的映射请求. params 和 headers 支持简单的表达式.</div><div class="line"> * </div><div class="line"> * @return</div><div class="line"> */</div><div class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, params = &#123; &quot;username&quot;,</div><div class="line">		&quot;age!=10&quot; &#125;, headers = &#123; &quot;Accept-Language=en-US,zh;q=0.8&quot; &#125;)</div><div class="line">public String testParamsAndHeaders() &#123;</div><div class="line">	System.out.println(&quot;testParamsAndHeaders&quot;);</div><div class="line">	return SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="2、-RequestMapping-该注解的ant-风格请求"><a href="#2、-RequestMapping-该注解的ant-风格请求" class="headerlink" title="2、@RequestMapping 该注解的ant 风格请求"></a>2、@RequestMapping 该注解的ant 风格请求</h1><h2 id="1）、支持三种通配符"><a href="#1）、支持三种通配符" class="headerlink" title="1）、支持三种通配符"></a>1）、支持三种通配符</h2><p><strong>①、?匹配url中任意一个字符</strong></p>
+<p><strong>②、*匹配url中任意多个字符</strong></p>
+<p><strong>③、**:</strong>匹配多层路劲任意多个字符**</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(&quot;/testAntPath/*/abc&quot;)</div><div class="line">	public String testAntPath() &#123;</div><div class="line">		System.out.println(&quot;testAntPath&quot;);</div><div class="line">		return SUCCESS;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+
+  </section>
+
+</article>
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/11、注解篇@ResponseBody和@RequestBody/" title="11、注解篇@ResponseBody and @RequestBody">11、注解篇@ResponseBody and @RequestBody</a></h2>
+                <p class="excerpt">
+                
+                1234567891011121314151617181920212223@RequestMapping(&amp;quot;/testResponseEntity&amp;quot;)	public ResponseEntity&amp;lt;byte[]&amp;gt; testResponseEntity(HttpSessi
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-ResponseBody-RequestBody/">spring,spring mvc,注解,ResponseBody,RequestBody</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/11、注解篇@ResponseBody和@RequestBody/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/4、注解篇@RequestHeader/" title="4、注解篇@RequestHeader">4、注解篇@RequestHeader</a></h2>
+                <p class="excerpt">
+                
+                @RequestHeader 获取请求头文件的信息1、value值对应头文件中的键
+2、defaultValue 该参数的默认值当键值没有传输时将使用这个参数进行赋值
+3、required是否必须。默认为 true, 表示请求参数中必须包含对应的参数，若不存在，将抛出异常123456789/** *
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-RequestHeader/">spring,spring mvc,注解,RequestHeader</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/4、注解篇@RequestHeader/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+            
+            <footer class="footer">
+    <span class="footer__copyright">
+        Duai 博客
+    </span>
+</footer>
+        </div>
+    </div>
+
+    
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-92321957-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?efc0a1d7fb38d50c9c03ed4108286414";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    
+    </script>
+    
+</body>
+</html>

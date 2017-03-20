@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>Mysql之触发器的学习与理解 | Duai</title>
+    <title>8、注解篇@DateTimeFormat | Duai</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="将易意淫的态度，放到目标上">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Mysql之触发器的学习与理解 | Duai">
+    <meta name="twitter:title" content="8、注解篇@DateTimeFormat | Duai">
     <meta name="twitter:description" content="将易意淫的态度，放到目标上">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Mysql之触发器的学习与理解 | Duai">
+    <meta property="og:title" content="8、注解篇@DateTimeFormat | Duai">
     <meta property="og:description" content="将易意淫的态度，放到目标上">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://www.duaicxx.com/2017/02/23/Mysql之触发器的学习与理解/"/>
+    <link rel="canonical" href="http://www.duaicxx.com/2017/03/20/spring mvc注解篇/8、注解篇@DateTimeFormat/"/>
 
     
     <link rel="author" href="https://plus.google.com/114544845107970781441"/>
@@ -141,29 +141,21 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2017-02-23T03:31:38.000Z" class="post-list__meta--date date">2017-02-23</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Mysql-触发器/">Mysql,触发器</a>
+      <time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-DateTimeFormat/">spring,spring mvc,注解,DateTimeFormat</a>
  </span>
       <span class="page-pv">
       &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
       </span> 
    
     </div>
-    <h1 class="post-title">Mysql之触发器的学习与理解</h1>
+    <h1 class="post-title">8、注解篇@DateTimeFormat</h1>
   </header>
 
   <section class="post">
-    <h1 id="Mysql触发器"><a href="#Mysql触发器" class="headerlink" title="Mysql触发器"></a>Mysql触发器</h1><p>先上代码：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> control_log_trigger;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> control_log_trigger <span class="keyword">AFTER</span> <span class="keyword">INSERT</span> <span class="keyword">ON</span> control_log.termail</div><div class="line">  <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">BEGIN</span></div><div class="line">    <span class="keyword">INSERT</span> <span class="keyword">INTO</span> temp_control_log.termail <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> control_log.termail <span class="keyword">where</span> <span class="keyword">id</span> = NEW.id;</div><div class="line">  <span class="keyword">END</span>;</div></pre></td></tr></table></figure></p>
-<p>解释：</p>
-<hr>
-<pre><code>1、DROP TRIGGER control_log_trigger;第一行是删除同名触发器
-2、CREATE TRIGGER control_log_trigger;创建触发器
-3、AFTER INSERT ON control_log.termail;设置触发器,触发时间:1、AFTER 在commit之后2、befoer在commit之前,指定触发操作为INSERT、UPDATE、DELETE，最后部分指定表。
-4、FOR EACH ROW BEGIN;固定代码。
-5、需要进行的操作,操作结束后必须使用分好结尾&apos;;&apos;。
-6、END,结尾。
-</code></pre><hr>
-<p>个人理解：触发相当于后端的拦截器。</p>
+    <h1 id="DateTimeFormat-注解可对"><a href="#DateTimeFormat-注解可对" class="headerlink" title="@DateTimeFormat 注解可对"></a>@DateTimeFormat 注解可对</h1><h2 id="java-util-Date、java-util-Calendar、java-long-Long-时间类型进行标注："><a href="#java-util-Date、java-util-Calendar、java-long-Long-时间类型进行标注：" class="headerlink" title="java.util.Date、java.util.Calendar、java.long.Long 时间类型进行标注："></a>java.util.Date、java.util.Calendar、java.long.Long 时间类型进行标注：</h2><p><strong>– pattern 属性：类型为字符串。指定解析/格式化字段数据的模式，<br>如：”yyyy-MM-dd hh:mm:ss”</strong></p>
+<p><strong>– iso 属性：类型为 DateTimeFormat.ISO。指定解析/格式化字段数据<br>的ISO模式，包括四种：ISO.NONE（不使用） – 默<br>认、ISO.DATE(yyyy-MM-dd) 、ISO.TIME(hh:mm:ss.SSSZ)、<br>ISO.DATE_TIME(yyyy-MM-dd hh:mm:ss.SSSZ)</strong></p>
+<p><strong>– style 属性：字符串类型。通过样式指定日期时间的格式，由两位字<br>符组成，第一位表示日期的格式，第二位表示时间的格式：S：短日<br>期/时间格式、M：中日期/时间格式、L：长日期/时间格式、F：完整<br>日期/时间格式、-：忽略日期或时间格式</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@DateTimeFormat(pattern=&quot;yyyy-MM-dd&quot;)</div><div class="line">	private Date birth;</div></pre></td></tr></table></figure></p>
 
   </section>
 
@@ -174,6 +166,24 @@
                
             <div class="read-more-item">
                 <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/6、注解篇@SessionAttributes/" title="6、注解篇@SessionAttributes">6、注解篇@SessionAttributes</a></h2>
+                <p class="excerpt">
+                
+                @SessionAttributes 该注解使用在类注解上该注解使用再与将request中存在的值共享到session中
+1、value值实际中存入到request中的键值
+2、types除了可以传键值以外还可以指定类型当值的类型为String时传入String.class1234567891011
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-SessionAttributes/">spring,spring mvc,注解,SessionAttributes</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/6、注解篇@SessionAttributes/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
                 <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/7、注解篇@ModelAttribute/" title="7、注解篇@ModelAttribute">7、注解篇@ModelAttribute</a></h2>
                 <p class="excerpt">
                 
@@ -183,10 +193,8 @@
                 <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
   <a class="tag-link" href="/tags/spring-spring-mvc-注解-ModelAttribute/">spring,spring mvc,注解,ModelAttribute</a>
 </span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/7、注解篇@ModelAttribute/">继续阅读</a></div>
-                           
+                       
             </div>
-        
-        
         
      
    

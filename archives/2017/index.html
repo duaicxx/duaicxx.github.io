@@ -143,21 +143,165 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2017/02/23/Mysql之触发器的学习与理解/" title="link to post.title">Mysql之触发器的学习与理解</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/3、注解篇@RequestParam/" title="link to post.title">3、注解篇@RequestParam</a></h2>
       <p class="excerpt">
     
-      Mysql触发器先上代码：12345DROP TRIGGER control_log_trigger;CREATE TRIGGER control_log_trigger AFTER INSERT ON control_log.termail  FOR EACH ROW BEGIN    INSERT INTO temp_control_log.termail SELECT * FROM cont
+      @RequestParam 参数标识注解存在三个参数1、value值对应url提交的?id=xx中的id，参数名
+2、defaultValue 该参数的默认值当url中id值没有传输时将使用这个参数进行赋值
+3、required是否必须。默认为 true, 表示请求参数中必须包含对应的参数，若不存在，将抛出异常123456789101112   /** * @RequestParam 来映射请求参
     &hellip;
       </p>
-      <div class="post-list__meta"><time datetime="2017-02-23T03:31:38.000Z" class="post-list__meta--date date">2017-02-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Mysql-触发器/">Mysql,触发器</a>
-</span><a class="btn-border-small" href="/2017/02/23/Mysql之触发器的学习与理解/">继续阅读</a></div>
+      <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-RequestParam/">spring,spring mvc,注解,RequestParam</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/3、注解篇@RequestParam/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/9、注解篇@NumberFormat/" title="link to post.title">9、注解篇@NumberFormat</a></h2>
+      <p class="excerpt">
+    
+      @NumberFormat 可对类似数字类型的属性进行标注，它拥有两个互斥的属性：– style：类型为 NumberFormat.Style。用于指定样式类型，包括三种：Style.NUMBER（正常数字类型）、Style.CURRENCY（货币类型）、 Style.PERCENT（百分数类型）
+– pattern：类型为 String，自定义样式，如patter=”#,###”12@Numbe
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-NumberFormat/">spring,spring mvc,注解,NumberFormat</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/9、注解篇@NumberFormat/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/10、注解篇@Valid/" title="link to post.title">10、注解篇@Valid</a></h2>
+      <p class="excerpt">
+    
+      需要引用hibernate-validator相应的jar12345   @NotEmptyprivate String lastName;@Emailprivate String email;
+1234567891011121314151617181920@RequestMapping(value=&amp;quot;/emp&amp;quot;, method=RequestMethod.POST)	publ
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-Valid/">spring,spring mvc,注解,Valid</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/10、注解篇@Valid/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/12、注解篇@ExceptionHandler/" title="link to post.title">12、注解篇@ExceptionHandler</a></h2>
+      <p class="excerpt">
+    
+      异常捕获注解1234567891011121314/** * 1. 在 @ExceptionHandler 方法的入参中可以加入 Exception 类型的参数, 该参数即对应发生的异常对象 * 2. @ExceptionHandler 方法的入参中不能传入 Map. 若希望把异常信息传导页面上, 需要使用 ModelAndView 作为返回值 * 3. @ExceptionHandler 方法标
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-ExceptionHandler/">spring,spring mvc,注解,ExceptionHandler</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/12、注解篇@ExceptionHandler/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/13、注解篇@ControllerAdvice/" title="link to post.title">13、注解篇@ControllerAdvice</a></h2>
+      <p class="excerpt">
+    
+      @ControllerAdvice全局处理方式上一个注解ExceptionHandler只能处理当前类中的并不全局所以使用@ControllerAdvice注解的类中使用ExceptionHandler被注解的方法，将会被任意类中的异常使用123456789101112@ControllerAdvicepublic class SpringMVCTestExceptionHandler &amp;#123
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-ControllerAdvice/">spring,spring mvc,注解,ControllerAdvice</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/13、注解篇@ControllerAdvice/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/14、注解篇@ResponseStatus/" title="link to post.title">14、注解篇@ResponseStatus</a></h2>
+      <p class="excerpt">
+    
+      @ResponseStatus有两个参数1、value对应枚举HttpStatus的值，此值对应相应404,403,500
+2、reason界面提示文字
+3、使用案例123@ResponseStatus(value=HttpStatus.FORBIDDEN, reason=&amp;quot;用户名和密码不匹配!&amp;quot;)public class UserNameNotMatchPasswordExc
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-ResponseStatus/">spring,spring mvc,注解,ResponseStatus</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/14、注解篇@ResponseStatus/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/2、注解篇@PathVariable/" title="link to post.title">2、注解篇@PathVariable</a></h2>
+      <p class="excerpt">
+    
+      @PathVariable url传参注解改注解有一个参数value指定url中的参数对应的变量名例如：requestMapping值为/index/{id}
+此处PathVariable值应该为：id12345678910/** * @PathVariable 可以来映射 URL 中的占位符到目标方法的参数中. * @param id * @return */@RequestMapping(&amp;q
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-PathVariable/">spring,spring mvc,注解,PathVariable</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/2、注解篇@PathVariable/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/11、注解篇@ResponseBody和@RequestBody/" title="link to post.title">11、注解篇@ResponseBody and @RequestBody</a></h2>
+      <p class="excerpt">
+    
+      1234567891011121314151617181920212223@RequestMapping(&amp;quot;/testResponseEntity&amp;quot;)	public ResponseEntity&amp;lt;byte[]&amp;gt; testResponseEntity(HttpSession session) throws IOException&amp;#123;		byte [] body
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-ResponseBody-RequestBody/">spring,spring mvc,注解,ResponseBody,RequestBody</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/11、注解篇@ResponseBody和@RequestBody/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/1、注解篇@RequestMapping/" title="link to post.title">1、注解篇@RequestMapping</a></h2>
+      <p class="excerpt">
+    
+      1、@RequestMapping 请求url注解该注解有四个参数1）、value对应的url值，当类与方法都存在该注解是 将是拼接结果类在前方法在后。
+2）、method请求方法存在PUT、DELETE、POST、GET等常见的rest风格方式。12345678/** * 常用: 使用 method 属性来指定请求方式 */@RequestMapping(value = &amp;quot;/testM
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-RequestMapping/">spring,spring mvc,注解,RequestMapping</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/1、注解篇@RequestMapping/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/4、注解篇@RequestHeader/" title="link to post.title">4、注解篇@RequestHeader</a></h2>
+      <p class="excerpt">
+    
+      @RequestHeader 获取请求头文件的信息1、value值对应头文件中的键
+2、defaultValue 该参数的默认值当键值没有传输时将使用这个参数进行赋值
+3、required是否必须。默认为 true, 表示请求参数中必须包含对应的参数，若不存在，将抛出异常123456789/** * 了解: 映射请求头信息 用法同 @RequestParam */@RequestMapping(&amp;
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-RequestHeader/">spring,spring mvc,注解,RequestHeader</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/4、注解篇@RequestHeader/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   
     
   </ol>
 
+
+  <nav class="pagination" role="navigation">
+    
+    <span class="pagination__page-number" > 1 / 2 </span>
+    
+      <a class="older-posts pagination__older btn btn-small btn-tertiary" href="/archives/2017/page/2/">更早 →</a>
+    
+  </nav>
 
 
 </div>

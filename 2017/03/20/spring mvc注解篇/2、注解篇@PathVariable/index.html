@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>Mysql之触发器的学习与理解 | Duai</title>
+    <title>2、注解篇@PathVariable | Duai</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="将易意淫的态度，放到目标上">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Mysql之触发器的学习与理解 | Duai">
+    <meta name="twitter:title" content="2、注解篇@PathVariable | Duai">
     <meta name="twitter:description" content="将易意淫的态度，放到目标上">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Mysql之触发器的学习与理解 | Duai">
+    <meta property="og:title" content="2、注解篇@PathVariable | Duai">
     <meta property="og:description" content="将易意淫的态度，放到目标上">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://www.duaicxx.com/2017/02/23/Mysql之触发器的学习与理解/"/>
+    <link rel="canonical" href="http://www.duaicxx.com/2017/03/20/spring mvc注解篇/2、注解篇@PathVariable/"/>
 
     
     <link rel="author" href="https://plus.google.com/114544845107970781441"/>
@@ -141,29 +141,20 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2017-02-23T03:31:38.000Z" class="post-list__meta--date date">2017-02-23</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Mysql-触发器/">Mysql,触发器</a>
+      <time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-PathVariable/">spring,spring mvc,注解,PathVariable</a>
  </span>
       <span class="page-pv">
       &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
       </span> 
    
     </div>
-    <h1 class="post-title">Mysql之触发器的学习与理解</h1>
+    <h1 class="post-title">2、注解篇@PathVariable</h1>
   </header>
 
   <section class="post">
-    <h1 id="Mysql触发器"><a href="#Mysql触发器" class="headerlink" title="Mysql触发器"></a>Mysql触发器</h1><p>先上代码：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> control_log_trigger;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> control_log_trigger <span class="keyword">AFTER</span> <span class="keyword">INSERT</span> <span class="keyword">ON</span> control_log.termail</div><div class="line">  <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">BEGIN</span></div><div class="line">    <span class="keyword">INSERT</span> <span class="keyword">INTO</span> temp_control_log.termail <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> control_log.termail <span class="keyword">where</span> <span class="keyword">id</span> = NEW.id;</div><div class="line">  <span class="keyword">END</span>;</div></pre></td></tr></table></figure></p>
-<p>解释：</p>
-<hr>
-<pre><code>1、DROP TRIGGER control_log_trigger;第一行是删除同名触发器
-2、CREATE TRIGGER control_log_trigger;创建触发器
-3、AFTER INSERT ON control_log.termail;设置触发器,触发时间:1、AFTER 在commit之后2、befoer在commit之前,指定触发操作为INSERT、UPDATE、DELETE，最后部分指定表。
-4、FOR EACH ROW BEGIN;固定代码。
-5、需要进行的操作,操作结束后必须使用分好结尾&apos;;&apos;。
-6、END,结尾。
-</code></pre><hr>
-<p>个人理解：触发相当于后端的拦截器。</p>
+    <h1 id="PathVariable-url传参注解改注解有一个参数"><a href="#PathVariable-url传参注解改注解有一个参数" class="headerlink" title="@PathVariable url传参注解改注解有一个参数"></a>@PathVariable url传参注解改注解有一个参数</h1><h2 id="value指定url中的参数对应的变量名"><a href="#value指定url中的参数对应的变量名" class="headerlink" title="value指定url中的参数对应的变量名"></a>value指定url中的参数对应的变量名</h2><p><strong>例如：requestMapping值为/index/{id}</strong></p>
+<p><strong>此处PathVariable值应该为：id</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * @PathVariable 可以来映射 URL 中的占位符到目标方法的参数中.</div><div class="line"> * @param id</div><div class="line"> * @return</div><div class="line"> */</div><div class="line">@RequestMapping(&quot;/testPathVariable/&#123;id&#125;&quot;)</div><div class="line">public String testPathVariable(@PathVariable(&quot;id&quot;) Integer id) &#123;</div><div class="line">	System.out.println(&quot;testPathVariable: &quot; + id);</div><div class="line">	return SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
   </section>
 
@@ -174,19 +165,35 @@
                
             <div class="read-more-item">
                 <span class="read-more-item-dim">最近的文章</span>
-                <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/7、注解篇@ModelAttribute/" title="7、注解篇@ModelAttribute">7、注解篇@ModelAttribute</a></h2>
+                <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/14、注解篇@ResponseStatus/" title="14、注解篇@ResponseStatus">14、注解篇@ResponseStatus</a></h2>
                 <p class="excerpt">
                 
-                @ModelAttribute 绑定值会在controller执行之前先执行的方式可以使用@RequestParam注解获取传入的值，当定义该注解后该类的所以请求都会先执行1234567891011121314151617181920212223242526272829303132333435363
+                @ResponseStatus有两个参数1、value对应枚举HttpStatus的值，此值对应相应404,403,500
+2、reason界面提示文字
+3、使用案例123@ResponseStatus(value=HttpStatus.FORBIDDEN, reason=&amp;quot;用户名和密码不
                 &hellip;
                 </p>
                 <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/spring-spring-mvc-注解-ModelAttribute/">spring,spring mvc,注解,ModelAttribute</a>
-</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/7、注解篇@ModelAttribute/">继续阅读</a></div>
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-ResponseStatus/">spring,spring mvc,注解,ResponseStatus</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/14、注解篇@ResponseStatus/">继续阅读</a></div>
                            
             </div>
         
         
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/11、注解篇@ResponseBody和@RequestBody/" title="11、注解篇@ResponseBody and @RequestBody">11、注解篇@ResponseBody and @RequestBody</a></h2>
+                <p class="excerpt">
+                
+                1234567891011121314151617181920212223@RequestMapping(&amp;quot;/testResponseEntity&amp;quot;)	public ResponseEntity&amp;lt;byte[]&amp;gt; testResponseEntity(HttpSessi
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-ResponseBody-RequestBody/">spring,spring mvc,注解,ResponseBody,RequestBody</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/11、注解篇@ResponseBody和@RequestBody/">继续阅读</a></div>
+                       
+            </div>
         
      
    

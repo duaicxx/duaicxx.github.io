@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>10、注解篇@Valid | Duai</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="将易意淫的态度，放到目标上">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="10、注解篇@Valid | Duai">
+    <meta name="twitter:description" content="将易意淫的态度，放到目标上">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="10、注解篇@Valid | Duai">
+    <meta property="og:description" content="将易意淫的态度，放到目标上">
+
+    
+    <meta name="author" content="獨文公">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/wallhaven-58973.jpg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://www.duaicxx.com/2017/03/20/spring mvc注解篇/10、注解篇@Valid/"/>
+
+    
+    <link rel="author" href="https://plus.google.com/114544845107970781441"/>
+    
+      
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/kali-linux-wallpaper_654878112.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Duai 的主页"><img src="/images/headimg_dl.jpg" width="80" alt="Duai logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Duai">Duai</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">JAVA  C#  数据库  前端  集群 分布式</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">将易意淫的态度，放到目标上</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.com/233804566" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/duaicxx" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+  <li class="navigation__item">
+    <a href="https://plus.google.com/114544845107970781441" title="Google+" target="_blank">
+      <i class='social fa fa-google-plus-square'></i>
+      <span class="label">Google+</span>
+    </a>
+  </li>
+
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay null"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-Valid/">spring,spring mvc,注解,Valid</a>
+ </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">10、注解篇@Valid</h1>
+  </header>
+
+  <section class="post">
+    <h1 id="需要引用hibernate-validator相应的jar"><a href="#需要引用hibernate-validator相应的jar" class="headerlink" title="需要引用hibernate-validator相应的jar"></a>需要引用hibernate-validator相应的jar</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   @NotEmpty</div><div class="line">private String lastName;</div><div class="line"></div><div class="line">@Email</div><div class="line">private String email;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value=&quot;/emp&quot;, method=RequestMethod.POST)</div><div class="line">	public String save(@Valid Employee employee, BindingResult result, </div><div class="line">			Map&lt;String, Object&gt; map)&#123;</div><div class="line">		System.out.println(&quot;save: &quot; + employee);</div><div class="line">		</div><div class="line">		if(result.getErrorCount() &gt; 0)&#123;</div><div class="line">			System.out.println(&quot;出错了!&quot;);</div><div class="line">			</div><div class="line">			for(FieldError error:result.getFieldErrors())&#123;</div><div class="line">				System.out.println(error.getField() + &quot;:&quot; + error.getDefaultMessage());</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			//若验证出错, 则转向定制的页面</div><div class="line">			map.put(&quot;departments&quot;, departmentDao.getDepartments());</div><div class="line">			return &quot;input&quot;;</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		employeeDao.save(employee);</div><div class="line">		return &quot;redirect:/emps&quot;;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p><strong>因为BindingResult继承ERRORS 所以使用该类也可</strong></p>
+<h1 id="界面显示时使用标签"><a href="#界面显示时使用标签" class="headerlink" title="界面显示时使用标签"></a>界面显示时使用<form:errors path=""></form:errors>标签</h1><p><strong>使用方式打印所有时使用*打印所有如果打印指定字段时使用字段name</strong></p>
+<p><strong>还需要注意一点就是：检测的实体与结果必须紧挨着，中间不能隔其他参数。</strong></p>
+<h1 id="国际化输出i18n-properties"><a href="#国际化输出i18n-properties" class="headerlink" title="国际化输出i18n.properties"></a>国际化输出i18n.properties</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">NotEmpty.employee.lastName=^^LastName\u4E0D\u80FD\u4E3A\u7A7A.</div><div class="line">Email.employee.email=Email\u5730\u5740\u4E0D\u5408\u6CD5</div><div class="line">Past.employee.birth=Birth\u4E0D\u80FD\u662F\u4E00\u4E2A\u5C06\u6765\u7684\u65F6\u95F4. </div><div class="line">typeMismatch.employee.birth=Birth\u4E0D\u662F\u4E00\u4E2A\u65E5\u671F.</div></pre></td></tr></table></figure>
+<p><strong>格式：注解类型.实体类变量名.属性名</strong><br><strong>typeMismatch代表着前面使用类型转换注解异常，需要使用typeMismatch定义提示语</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 配置国际化资源文件 --&gt;</div><div class="line">	&lt;bean id=&quot;messageSource&quot;</div><div class="line">		class=&quot;org.springframework.context.support.ResourceBundleMessageSource&quot;&gt;</div><div class="line">		&lt;property name=&quot;basename&quot; value=&quot;i18n&quot;&gt;&lt;/property&gt;</div><div class="line">	&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+
+  </section>
+
+</article>
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/9、注解篇@NumberFormat/" title="9、注解篇@NumberFormat">9、注解篇@NumberFormat</a></h2>
+                <p class="excerpt">
+                
+                @NumberFormat 可对类似数字类型的属性进行标注，它拥有两个互斥的属性：– style：类型为 NumberFormat.Style。用于指定样式类型，包括三种：Style.NUMBER（正常数字类型）、Style.CURRENCY（货币类型）、 Style.PERCENT（百分数类型）
+
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-NumberFormat/">spring,spring mvc,注解,NumberFormat</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/9、注解篇@NumberFormat/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/03/20/spring mvc注解篇/12、注解篇@ExceptionHandler/" title="12、注解篇@ExceptionHandler">12、注解篇@ExceptionHandler</a></h2>
+                <p class="excerpt">
+                
+                异常捕获注解1234567891011121314/** * 1. 在 @ExceptionHandler 方法的入参中可以加入 Exception 类型的参数, 该参数即对应发生的异常对象 * 2. @ExceptionHandler 方法的入参中不能传入 Map. 若希望把异常信息传导页面上, 
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-03-20T09:15:00.000Z" class="post-list__meta--date date">2017-03-20</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/spring-spring-mvc-注解-ExceptionHandler/">spring,spring mvc,注解,ExceptionHandler</a>
+</span><a class="btn-border-small" href="/2017/03/20/spring mvc注解篇/12、注解篇@ExceptionHandler/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+            
+            <footer class="footer">
+    <span class="footer__copyright">
+        Duai 博客
+    </span>
+</footer>
+        </div>
+    </div>
+
+    
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-92321957-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?efc0a1d7fb38d50c9c03ed4108286414";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    
+    </script>
+    
+</body>
+</html>
